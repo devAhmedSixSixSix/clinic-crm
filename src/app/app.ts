@@ -3,7 +3,6 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SideMenu } from './components/side-menu/side-menu';
 import { TopMenu } from './components/top-menu/top-menu';
 import { NgIf } from '@angular/common';
-import { SideMenuResponsive } from './components/side-menu-responsive/side-menu-responsive';
 
 @Component({
   selector: 'app-root',
