@@ -1,0 +1,156 @@
+<div class="my-8">
+
+  <div class="flex items-center justify-between border-b border-[#e9ebf0] my-6 pb-6">
+
+    <h2 class="text-xl md:text-2xl font-semibold ">
+      Patient Details
+    </h2>
+    <button (click)="openEditPopup()" class="bg-blue-600 text-white px-4 py-2 rounded">
+      Edit Patient
+    </button>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-8">
+    <!-- Left Column -->
+    <div class="w-full md:w-1/2 md:border-r border-[#e9ebf0] pr-0 md:pr-6">
+      <div class="w-full">
+        <!-- Avatar & Basic Info -->
+        <div class="flex items-center mb-6">
+          <img class="w-12 h-12" src="/avatar.svg" alt="avatar" />
+          <div class="ms-3">
+            <p class="text-base font-normal">{{patient?.patientInfo?.name}}</p>
+            <p class="text-[#737373] text-xs">{{patient?.patientInfo?.mail}}</p>
+          </div>
+        </div>
+
+        <!-- General Information -->
+        <div>
+          <h2 class="text-lg font-semibold my-6">General Information</h2>
+
+          <div class="flex justify-between items-center pb-5 border-b border-[#e9ebf0]">
+            <p class="text-[#737373]">Date of birth</p>
+            <div class="text-right">
+              <p class="text-base font-medium">
+                ({{ patient?.age }} Years)
+              </p>
+              <p class="text-base font-medium">
+                {{ patient?.patientInfo?.birtday }}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center py-5 border-b border-[#e9ebf0]">
+            <p class="text-[#737373]">Status</p>
+            <app-table-satus-card [status]="patient?.status || 'Healthy'" />
+          </div>
+
+          <div class="flex justify-between items-center py-5">
+            <p class="text-[#737373]">Gender</p>
+            <p class="text-base font-medium">{{ patient?.patientInfo?.gender }}</p>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h2 class="text-lg font-semibold my-6">Contact Information</h2>
+
+          <div class="flex justify-between items-center pb-5 border-b border-[#e9ebf0]">
+            <p class="text-[#737373]">Address</p>
+            <p class="text-base font-medium text-right">
+              {{ patient?.patientInfo?.address }}
+            </p>
+          </div>
+
+          <div class="flex justify-between items-center py-5 border-b border-[#e9ebf0]">
+            <p class="text-[#737373]">Phone</p>
+            <p class="text-base font-medium">{{ patient?.patientInfo?.phone }}</p>
+          </div>
+
+          <div class="flex justify-between items-center py-5">
+            <p class="text-[#737373]">Email</p>
+            <p class="text-base font-medium">{{ patient?.patientInfo?.mail }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="w-full md:w-1/2">
+      <!-- Accordion Section -->
+      <h2 class="text-lg font-semibold mb-6">Medical History</h2>
+
+
+      <cdk-accordion class="example-accordion">
+        @for (item of items; track item; let index = $index) {
+        <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item">
+          <button class="example-accordion-item-header" (click)="accordionItem.toggle()" tabindex="0"
+            [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + index">
+            {{ item }}
+            <span class="example-accordion-item-description">
+              <svg *ngIf="accordionItem.expanded" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+              </svg>
+              <svg *ngIf="!accordionItem.expanded" class="w-4 h-4" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+            </span>
+          </button>
+
+          @if (accordionItem.expanded) {
+          <div class="example-accordion-item-body" role="region" [attr.id]="'accordion-body-' + index"
+            [attr.aria-labelledby]="'accordion-header-' + index">
+
+            @if (item === 'prescription' && patient?.prescription?.length) {
+            <div *ngFor="let pres of patient?.prescription" class="mb-4">
+              <img [src]="pres.prescriptionImg" alt="Prescription" class="w-40 h-auto rounded shadow" />
+              <p class="text-sm text-gray-600 mt-2">Date: {{ pres.date }}</p>
+            </div>
+            }
+
+            @if (item === 'Laboratory Tests' && patient?.LaboratoryTests?.length) {
+            <div *ngFor="let test of patient?.LaboratoryTests" class="mb-4">
+              <img [src]="test.LaboratoryTestsImg" alt="Lab Test" class="w-40 h-auto rounded shadow" />
+              <p class="text-sm text-gray-600 mt-2">Date: {{ test.date }}</p>
+            </div>
+            }
+
+            @if (item === 'scans' && patient?.scans?.length) {
+            <div *ngFor="let scan of patient?.scans" class="mb-4">
+              <img [src]="scan.scansImg" alt="Scan" class="w-40 h-auto rounded shadow" />
+              <p class="text-sm text-gray-600 mt-2">Date: {{ scan.date }}</p>
+            </div>
+            }
+
+            @if (
+            (item === 'prescription' && !patient?.prescription?.length) ||
+            (item === 'LaboratoryTests' && !patient?.LaboratoryTests?.length) ||
+            (item === 'scans' && !patient?.scans?.length)
+            ) {
+            <p class="text-gray-500 italic">No records available.</p>
+            }
+
+          </div>
+          }
+        </cdk-accordion-item>
+        }
+      </cdk-accordion>
+
+
+      <!-- Appointment Card -->
+      <div>
+        <h2 class="text-lg font-semibold my-6">Latest Diagnosis</h2>
+        @for (diagnosis of patient?.diagnosis; track diagnosis) {
+        @if (diagnosis.diagnosisType.length > 0) {
+        <app-appointment-card [appointmentType]="diagnosis.diagnosisType" [appointmentTitle]="diagnosis.diagnosisType"
+          [appointmentTime]="diagnosis.diagnosisDate" />
+        }@else {
+        <p>N/A</p>
+        }
+        }
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="max-w-screen-lg mx-auto px-4">
+    <h2 class="ps-0 md:ps-8 text-xl md:text-2xl font-semibold my-6">My Profile</h2>
+
+    <mat-tab-group>
+        <!-- My Profile Tab -->
+        <mat-tab label="My Profile">
+            <!-- Avatar & Info -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 sm:ms-4 my-5">
+                <div class="relative w-18 h-18">
+                    <!-- Avatar image -->
+                    <img class="w-full h-full rounded-full object-cover" [src]="avatarUrl || '/avatar.svg'"
+                        alt="avatar" />
+
+                    <!-- Pen icon to trigger upload -->
+                    <span
+                        class="absolute bottom-[-2px] right-[-10px] bg-[#f2f7ff] p-1 rounded-full border-2 border-white cursor-pointer"
+                        (click)="fileInput.click()">
+                        <img class="w-5 h-5" src="/pen.svg" alt="edit" />
+                    </span>
+
+                    <!-- Hidden file input -->
+                    <input #fileInput type="file" accept="image/*" class="hidden" (change)="onImageSelected($event)" />
+                </div>
+
+
+                <div class="text-center sm:text-start">
+                    <p class="text-[18px] font-[500] hidden lg:block">{{userFirstName}} {{userLastName}}</p>
+                    <p class="text-[#737373] text-[14px] hidden lg:block">{{accountType}}</p>
+                </div>
+            </div>
+
+            <!-- Personal Info Form -->
+            <form class="pb-8 px-0 md:px-8" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <h2 class="text-lg font-medium mt-6 mb-4">Personal Information</h2>
+
+                <!-- First & Last Name -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full">
+                        <app-custom-input type="text" label="First Name"
+                            [placeholder]="userFirstName || 'Enter first name'" formControlName="firstName" />
+                    </div>
+                    <div class="w-full">
+                        <app-custom-input type="text" label="Last Name"
+                            [placeholder]="userLastName || 'Enter first name'" formControlName="lastName" />
+                    </div>
+                </div>
+
+                <!-- Email & Phone -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full">
+                        <app-custom-input type="email" label="Email address" placeholder="Enter Email address"
+                            disabled />
+                    </div>
+                    <div class="w-full">
+                        <app-custom-input type="text" label="Phone Number" placeholder="Enter Phone Number"
+                            formControlName="phone" />
+                    </div>
+                </div>
+
+                <!-- Account Type -->
+                <div>
+                    <label class="block" for="status">Account type</label>
+                    <select id="status"
+                        class="placeholder-[#9ca3af] placeholder:font-[500] mx-auto block outline-0 border border-[#EAECF0] rounded-[8px] p-[12px] w-full mt-[12px] mb-[16px]"
+                        formControlName="accountType">
+                        <option value="Doctor">Doctor</option>
+                        <option value="Reception">Reception</option>
+                    </select>
+                </div>
+
+                <h2 class="text-lg font-medium mt-6 mb-4">Address</h2>
+
+                <!-- Country & City -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full">
+                        <app-custom-input type="text" label="Country" placeholder="Select Your Country"
+                            formControlName="country" />
+                    </div>
+                    <div class="w-full">
+                        <app-custom-input type="text" label="City" placeholder="Select Your City"
+                            formControlName="city" />
+                    </div>
+                </div>
+
+                <!-- Street & Zip -->
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full">
+                        <app-custom-input type="text" label="Street" placeholder="Enter Street Name"
+                            formControlName="street" />
+                    </div>
+                    <div class="w-full">
+                        <app-custom-input type="text" label="Zip Code" placeholder="Enter Zip Code"
+                            formControlName="zipCode" />
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="w-full flex justify-end mt-6">
+                    <div class="w-fit">
+                        <app-form-btn [text]="'Update Info'" />
+                    </div>
+                </div>
+            </form>
+
+
+        </mat-tab>
+
+        <!-- Security Tab -->
+        <mat-tab label="Security">
+            <h2 class="text-lg font-medium mt-6 mb-4">Change Password</h2>
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="mt-8 px-0 md:px-4">
+                <app-custom-input formControlName="email" type="email" label="Email" placeholder="Enter your email" />
+
+                <app-custom-input formControlName="currentPassword" type="password" label="Current Password"
+                    placeholder="Enter your current password" />
+
+                <app-custom-input formControlName="newPassword" type="password" label="New Password"
+                    placeholder="Enter new password" />
+
+                <div class="w-full flex justify-end mt-4">
+                    <div class="w-fit">
+                        <app-form-btn [text]="'Change Password'" />
+                    </div>
+                </div>
+            </form>
+
+        </mat-tab>
+    </mat-tab-group>
+</div>

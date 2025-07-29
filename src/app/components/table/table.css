@@ -1,0 +1,34 @@
+/* Header cells only (th) */
+.mat-mdc-table .mat-mdc-header-cell {
+    background: #f7f9fa !important;
+    color: #737373 !important;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 12 0;
+}
+
+/* All other rows/cells (td and body) */
+.mat-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mdc-data-table__cell {
+    background: white !important;
+    color: #767676;
+    font-size: 1rem;
+    font-weight: 300;
+
+}
+
+.mat-mdc-paginator {
+    background-color: #ffffff !important;
+    margin-top: 20px;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid #dcdcdc !important;
+}
+
+.mat-mdc-header-cell {
+    border-bottom: 1px solid #e0e0e0 !important;
+}

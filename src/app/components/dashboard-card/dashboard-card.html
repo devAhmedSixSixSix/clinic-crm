@@ -1,0 +1,29 @@
+<div [ngClass]="bg"
+  class="flex justify-center items-center rounded-[20px] py-[30px] border border-[#EAECF0] h-full text-center">
+  <div class="max-w-[220px] w-full">
+    <div>
+      <div
+        class="flex justify-center items-center bg-[#ebf3ff] rounded-[6px] p-[8px] border border-[#FFFFFFCC] w-[44px] h-[44px] mx-auto">
+        <img [src]="icon" alt="icon" class="w-[25px] h-[25px]" />
+      </div>
+      <h2 class="text-[1.2rem] font-[500] mt-[12px] mb-[8px]">{{ title }}</h2>
+    </div>
+
+    <div class="mb-[24px] flex justify-center items-center">
+      <p class="text-[1.5rem] font-[500]">{{ total }}</p>
+      <div
+        class="flex items-center py-[5px] px-[8px] ms-[12px] text-[#0067FF] bg-[#f5f9ff] border border-[#e0edff] rounded-full">
+        <img class="mt-1 me-[3px]" src="/TrendUp.svg" alt="">
+        <p>0%</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-[0.5px] border-[#EAECF0]" />
+
+    <ul class="text-center">
+      @for (item of items; track item) {
+      <li class="mb-[10px] text-[1.3rem]">{{ item }} {{total}}</li>
+      }
+    </ul>
+  </div>
+</div>

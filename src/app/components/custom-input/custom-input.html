@@ -1,0 +1,11 @@
+<div class="text-[#A3A3A3] text-[0.9rem] w-full">
+  <label class="block w-full text-black">{{ label }}</label>
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="handleInput($event)"
+    (blur)="onTouched()"
+    class="text-black placeholder-[#9ca3af] placeholder:font-[500] mx-auto block outline-0 border border-[#EAECF0] rounded-[8px] p-[12px] w-full mt-[12px] mb-[16px]"
+  />
+</div>

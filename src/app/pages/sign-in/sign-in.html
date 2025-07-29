@@ -1,0 +1,29 @@
+<div class="flex justify-center items-center min-h-screen">
+  <form [formGroup]="form" (ngSubmit)="signIn()" class="max-w-[400px] mx-auto p-[32px]">
+    <app-custom-title-and-description
+      [title]="'Welcome to Wellspring'"
+      [description]="'Please sign-in to your account and start the adventures'"
+    />
+
+    <app-custom-input type="email" label="Email" placeholder="Enter email" formControlName="email" />
+    <app-custom-input type="password" label="Password" placeholder="Enter password" formControlName="password" />
+
+    <div class="flex items-center mb-[30px]">
+      <input class="w-[24px] h-[24px] me-[10px]" type="checkbox" />
+      <label class="text-[#a3a3a3]">Remember me</label>
+    </div>
+
+    <a [routerLink]="['/forget-password']">
+      <p class="text-[#0067FF] text-[1rem] text-end">Forgot password?</p>
+    </a>
+
+    <app-form-btn [text]="'Sign In'"></app-form-btn>
+
+    <p class="text-[#737373] text-[1rem] text-center mt-4">
+      New on our platform?
+      <span class="text-[#0067FF]">
+        <a [routerLink]="['/signup']">Create an account</a>
+      </span>
+    </p>
+  </form>
+</div>

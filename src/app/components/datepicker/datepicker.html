@@ -1,0 +1,33 @@
+<div class="rounded-[20px] py-[20px] border-[1px] border-[#EAECF0]">
+  <div class="px-[20px]">
+    <h2 class="mb-[16px] text-[1.2rem] font-[600]">Activity</h2>
+    <div class="flex gap-[24px]">
+      <div class="flex items-center justify-center">
+        <span class="block w-[10px] h-[10px] bg-[#0066ff] rounded-full me-[8px]"></span>
+        <p class="text-[14px] text-[#737373]">Appointment</p>
+      </div>
+      <div class="flex items-center justify-center">
+        <span class="block w-[10px] h-[10px] bg-[#FC7D5D] rounded-full me-[8px]"></span>
+        <p class="text-[14px] text-[#737373]">Meeting</p>
+      </div>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+  </mat-card>
+
+  <div class="px-[20px]">
+    <p class="mt-[10px] mb-[10px] text-[15px] font-medium text-[#555]">
+      Appointments for today:
+    </p>
+
+    @for (appointment of appointments(); track appointment.id) {
+      <app-appointment-card
+        [appointmentType]="appointment.type"
+        [appointmentTitle]="appointment.title"
+        [appointmentTime]="appointment.time"
+      />
+    }
+  </div>
+</div>

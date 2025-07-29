@@ -1,0 +1,19 @@
+<div
+  class="flex items-center justify-center w-fit py-[4px] px-[8px] rounded-full border-2"
+  [ngClass]="[
+    statusStyles.text,
+    statusStyles.bg,
+    statusStyles.border
+  ]"
+>
+  <div
+    class="border-1 rounded-full flex justify-center items-center me-[6px]"
+    [ngClass]="statusStyles.dotBorder"
+  >
+    <span
+      class="w-[10px] h-[10px] rounded-full block m-[3px]"
+      [ngClass]="statusStyles.dot"
+    ></span>
+  </div>
+  <p>{{ status }}</p>
+</div>

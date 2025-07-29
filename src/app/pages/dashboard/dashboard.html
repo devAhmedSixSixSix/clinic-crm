@@ -1,0 +1,47 @@
+<div class="px-4">
+  <!-- Header Text -->
+  <div class="mt-6 mb-8">
+    <p class="text-2xl font-semibold mb-2">Welcome back, Dr. {{userFirstName}}</p>
+    <p class="text-base text-[#737373]">
+      Your progress this week is Awesome. Let's keep it up and get a lot of points reward!
+    </p>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div class="flex flex-col lg:flex-row gap-5 justify-center">
+    <!-- Left Section -->
+    <div class="w-full lg:w-[70%] flex flex-col gap-5">
+      <!-- Cards + Doughnut -->
+      <div class="flex flex-col lg:flex-row gap-5 items-stretch h-full">
+        <app-dashboard-card 
+          [bg]="'bg-[#0067FF] text-white'" 
+          class="w-full" 
+          [icon]="'/UsersThree.svg'" 
+          [title]="'Total Patient'" 
+          [items]="['New patient: ']" 
+        />
+        <!-- <app-dashboard-card 
+          class="w-full" 
+          [icon]="'/Vector(1).svg'" 
+          [title]="'VIP Clients'" 
+          [total]="45" 
+          [items]="['Ali Mansour', 'Sara Ahmed']" 
+        /> -->
+        <app-doughnut-chart class="w-full h-full" />
+      </div>
+
+      <!-- Bar Chart -->
+      <app-bar-chart />
+    </div>
+
+    <!-- Right Section (Date Picker) -->
+    <div class="w-full lg:w-[30%]">
+      <app-datepicker />
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="mt-8">
+    <app-table />
+  </div>
+</div>

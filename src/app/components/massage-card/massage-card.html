@@ -1,0 +1,33 @@
+@if (isMobile) {
+<div [routerLink]="'/massages/:id'"
+    class="cursor-pointer flex items-center gap-[12px] px-[12px] py-[10px] my-[24px] bg-[#f5f9ff] border-r-2 border-[#0066ff]">
+    <img src="/avatar.svg" alt="">
+    <div>
+        <h5 class="text-[18px] font-[600]">Dr. James Smith</h5>
+        <p class="text-[14px] font-[300] text-[#737373]">Usability is a core aspect of UX, focus...</p>
+    </div>
+</div>
+<div [routerLink]="'/massages/:id'" class="cursor-pointer flex items-center gap-[12px] px-[12px] py-[10px] my-[24px]">
+    <img src="/avatar.svg" alt="">
+    <div>
+        <h5 class="text-[18px] font-[600]">Dr. James Smith</h5>
+        <p class="text-[14px] font-[300] text-[#737373]">Usability is a core aspect of UX, focus...</p>
+    </div>
+</div>
+}@else{
+<div
+    class="cursor-pointer flex items-center gap-[12px] px-[12px] py-[10px] my-[24px] bg-[#f5f9ff] border-r-2 border-[#0066ff]">
+    <img src="/avatar.svg" alt="">
+    <div>
+        <h5 class="text-[18px] font-[600]">Dr. James Smith</h5>
+        <p class="text-[14px] font-[300] text-[#737373]">Usability is a core aspect of UX, focus...</p>
+    </div>
+</div>
+<div class="cursor-pointer flex items-center gap-[12px] px-[12px] py-[10px] my-[24px]">
+    <img src="/avatar.svg" alt="">
+    <div>
+        <h5 class="text-[18px] font-[600]">Dr. James Smith</h5>
+        <p class="text-[14px] font-[300] text-[#737373]">Usability is a core aspect of UX, focus...</p>
+    </div>
+</div>
+}

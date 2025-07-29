@@ -1,0 +1,22 @@
+<div class="my-[20px] p-[20px] rounded-[20px]  border-[1px] border-[#EAECF0]">
+  <div>
+
+    <div class="flex justify-between items-center mb-[20px]">
+      <h2 class="text-[1.3rem] font-[700]">Analytics</h2>
+      <div class="w-fit flex items-center border-[1px] border-[#EAECF0] rounded-full py-[4px] px-[8px]">
+        <img src="/CalendarBlank.svg" class="me-[4px]" alt="" srcset="">
+        <p class="text-[0.8rem] font-[600]">Monthly</p>
+      </div>
+    </div>
+    <div class="mb-[24px] flex items-center">
+      <p class="text-[1.5rem] font-[600]">{{totalPatients}}</p>
+      <div
+        class="flex items-center py-[5px] px-[8px] ms-[12px] text-[#0067FF] bg-[#f5f9ff] border-[1px] border-[#e0edff] rounded-full">
+        <img class="mt-1 me-[3px]" src="/TrendUp.svg" alt="" srcset="">
+        <p>0%</p> 
+      </div>
+      <!-- <p class="mx-[12px] text-[0.9rem] text-[#a3a3a3]">VS Last Month</p> -->
+    </div>
+  </div>
+  <canvas id="barCanvas"></canvas>
+</div>

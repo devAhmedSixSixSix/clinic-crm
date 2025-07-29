@@ -1,0 +1,81 @@
+<div class="mat-elevation-z8 p-5 rounded-[20px] border border-[#EAECF0] mb-8 mt-[50px]">
+  <div class="flex justify-between items-center">
+    <h2 class="text-black text-[1.3rem] md:text-[1.5rem] font-medium mb-5">Your Patients</h2>
+    <!-- <div class="flex justify-end"> -->
+      <button class="bg-blue-600 text-white p-2 rounded-[8px] mb-4" (click)="addNewPatient()">
+        New Patient
+      </button>
+    <!-- </div> -->
+  </div>
+
+  <!-- Responsive Table Wrapper -->
+  <div class="w-full overflow-x-auto">
+    <table mat-table [dataSource]="dataSource" class="mat-table min-w-[600px] w-full">
+
+      <!-- Room Number Column -->
+      <ng-container matColumnDef="patientNum">
+        <th mat-header-cell *matHeaderCellDef class="whitespace-nowrap">No. Room</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/patient', element.id]">
+            {{ element.patientNum }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Patient Name Column -->
+      <ng-container matColumnDef="patientName">
+        <th mat-header-cell *matHeaderCellDef class="whitespace-nowrap">Patient Info</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/patient', element.id]">
+            <div class="flex items-center gap-2 my-4">
+              <img [src]="element.patientInfo.userImg" alt="patient image"
+                class="w-12 h-12 object-cover rounded-full" />
+              <div>
+                <div class="text-sm font-medium text-black">{{ element.patientInfo.name }}</div>
+                <small class="text-[#737373] text-xs">{{ element.patientInfo.mail }}</small>
+              </div>
+            </div>
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Age Column -->
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef class="whitespace-nowrap">Age</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/patient', element.id]">
+            {{ element.age }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Diagnosis Column -->
+      <ng-container matColumnDef="diagnosis">
+        <th mat-header-cell *matHeaderCellDef class="whitespace-nowrap">Diagnosis</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/patient', element.id]">
+            {{ element.diagnosis[element.diagnosis.length - 1]?.diagnosisType || 'N/A' }}
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef class="whitespace-nowrap">Status</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/patient', element.id]">
+            <app-table-satus-card [status]="element.status || 'Healthy' " />
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Table Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="mt-4">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

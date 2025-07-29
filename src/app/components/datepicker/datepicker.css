@@ -1,0 +1,13 @@
+/* Make the entire calendar background white */
+mat-calendar,
+mat-card {
+  background-color: white;
+  box-shadow: none;
+}
+
+/* Target the selected date cell */
+mat-calendar .mat-calendar-body-selected {
+  background-color: #0066ff !important;
+  color: white !important;
+  border-radius: 50%; /* Optional: make it circular */
+}
