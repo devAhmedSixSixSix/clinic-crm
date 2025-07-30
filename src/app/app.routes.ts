@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth-guard';
+import { NotFound } from './components/not-found/not-found';
 
 export const routes: Routes = [
   {
@@ -62,5 +63,9 @@ export const routes: Routes = [
       import('./pages/forget-password/forget-password').then(
         (m) => m.ForgetPassword
       ),
+  },
+  {
+    path: '**',
+    component: NotFound
   },
 ];
