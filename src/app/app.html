@@ -1,24 +1,32 @@
-<div class="flex">
-  <!-- Side menu section -->
-  <div class="w-[20%] bg-[#F9FAFB] border-r-[1px] border-[#EAECF0] hidden lg:block" *ngIf="!shouldHideNavbar()">
-    <div class="container">
-      <app-side-menu />
-    </div>
-  </div>
-
-  <!-- Main content area -->
-  <div [class.w-full]="shouldHideNavbar()" [class.w-[100%]]="!shouldHideNavbar()">
-    <!-- Top menu section -->
-    <div class="bg-[#F9FAFB] border-b-[1px] border-[#EAECF0]" *ngIf="!shouldHideNavbar()">
+<ng-container *ngIf="!auth.isLoading(); else loading">
+  <div class="flex">
+    <!-- Side menu section -->
+    <div class="w-[20%] bg-[#F9FAFB] border-r-[1px] border-[#EAECF0] hidden lg:block" *ngIf="!shouldHideNavbar()">
       <div class="container">
-        <app-top-menu />
+        <app-side-menu />
       </div>
     </div>
 
-    <!-- Page content -->
-    <div class="container min-h-screen">
+    <!-- Main content area -->
+    <div [class.w-full]="shouldHideNavbar()" [class.w-[100%]]="!shouldHideNavbar()">
+      <!-- Top menu section -->
+      <div class="bg-[#F9FAFB] border-b-[1px] border-[#EAECF0]" *ngIf="!shouldHideNavbar()">
+        <div class="container">
+          <app-top-menu />
+        </div>
+      </div>
 
-      <router-outlet></router-outlet>
+      <!-- Page content -->
+      <div class="container min-h-screen">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #loading>
+  <!-- Optional: spinner or empty -->
+  <div class="flex justify-center items-center min-h-screen">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

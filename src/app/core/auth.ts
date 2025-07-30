@@ -17,10 +17,15 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private auth = inject(Auth);
   user$: Observable<User | null> = user(this.auth);
+
   currentUser = signal<User | null>(null);
+  isLoading = signal(true); 
 
   constructor() {
-    this.user$.subscribe(this.currentUser.set);
+    this.user$.subscribe((user) => {
+      this.currentUser.set(user);
+      this.isLoading.set(false);
+    });
   }
 
   signUp(email: string, password: string) {

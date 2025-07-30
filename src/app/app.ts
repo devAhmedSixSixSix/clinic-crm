@@ -1,21 +1,24 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SideMenu } from './components/side-menu/side-menu';
 import { TopMenu } from './components/top-menu/top-menu';
 import { NgIf } from '@angular/common';
+import { AuthService } from './core/auth';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SideMenu, TopMenu, NgIf],
+  standalone: true,
+  imports: [RouterOutlet, SideMenu, TopMenu, NgIf, MatProgressSpinnerModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-    currentUrl = '';
+  currentUrl = '';
+  hideNavRoutes = ['/signup', '/', '/forget-password'];
 
-  hideNavRoutes = ['/signup', '/', "/forget-password"];
-
-  constructor(private router: Router) {
+  constructor(private router: Router, public auth: AuthService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.urlAfterRedirects;
@@ -26,5 +29,4 @@ export class App {
   shouldHideNavbar(): boolean {
     return this.hideNavRoutes.includes(this.currentUrl);
   }
-
 }
